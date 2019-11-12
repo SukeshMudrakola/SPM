@@ -123,7 +123,6 @@ class LogoImageWidget extends StatelessWidget {
       width: 250,
       alignment: Alignment.center,
     );
-
     return Container(child: image);
   }
 }
@@ -194,7 +193,9 @@ class AdminPage extends StatelessWidget {
               child: RaisedButton(
                   child: Text("Go Back"),
                   onPressed: (){
-                    Navigator.of(context).pushNamed("/");},
+                   // Navigator.of(context).pushNamed("/");
+                    Navigator.pop(context);
+                    },
                   color: c2,
                   textColor: c,
                   shape: new RoundedRectangleBorder(

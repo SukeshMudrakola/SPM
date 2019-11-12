@@ -9,8 +9,9 @@ void main() {
     routes: <String , WidgetBuilder>{
       "/SecondPage": (BuildContext context) => new SecondPage(),
       "/AdminPage": (BuildContext context) => new AdminPage(),
-      "/": (BuildContext context) => new Home(),
+  //    "/": (BuildContext context) => new MainPage(),
 
     }
   ));
 }
+
