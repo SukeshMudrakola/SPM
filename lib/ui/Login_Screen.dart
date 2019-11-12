@@ -304,8 +304,10 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
   }
 
   Widget submitButton() {
+    Color c = Color.fromRGBO(251, 234, 235, 1);
+    Color c2 = Color.fromRGBO(47, 60, 126, 1);
     return RaisedButton(
-      color: Colors.blue,
+     // color: Colors.blue,
       child: Text('Submit'),
       onPressed: () {
         //*: Need to get a reference of the Form Widget with Global key to perform form validation
@@ -315,6 +317,8 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
           print(age);
         }
       },
+      color: c2,
+      textColor: c,
     );
   }
 }
