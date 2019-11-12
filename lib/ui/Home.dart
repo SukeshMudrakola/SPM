@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.only(top: 40.0),
               //  color: Colors.lightBlueAccent,
               child: Column(
-                     mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
+                     mainAxisAlignment: MainAxisAlignment.center ,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     new Container(
