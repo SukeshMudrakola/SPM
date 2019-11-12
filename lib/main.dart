@@ -7,7 +7,10 @@ void main() {
     title: "WeCARE",
     home: new Home(),
     routes: <String , WidgetBuilder>{
-      "/SecondPage": (BuildContext context) => new SecondPage()
+      "/SecondPage": (BuildContext context) => new SecondPage(),
+      "/AdminPage": (BuildContext context) => new AdminPage(),
+      "/": (BuildContext context) => new Home(),
+
     }
   ));
 }

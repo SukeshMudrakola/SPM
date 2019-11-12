@@ -89,7 +89,10 @@ class Home extends StatelessWidget {
                         height: 30,
                         child: RaisedButton(
                             child: Text("Admin Login"),
-                            onPressed: _adminLogin,
+                            onPressed: (){
+                            Navigator.of(context).pushNamed("/AdminPage");},
+
+
                             color: c2,
                             textColor: c,
                             shape: new RoundedRectangleBorder(
@@ -125,7 +128,99 @@ class LogoImageWidget extends StatelessWidget {
   }
 }
 
+class AdminImageWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    AssetImage logoAsset = AssetImage('assets/Work.png');
+    Image image = Image(
+      image: logoAsset,
+      width: 350,
+      alignment: Alignment.center,
+    );
 
+    return Container(child: image);
+  }
+}
+
+class AdminPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Color c = Color.fromRGBO(251, 234, 235, 1);
+    Color c2 = Color.fromRGBO(47, 60, 126, 1);
+
+    // TODO: implement build
+
+    return new Scaffold(
+      appBar: new AppBar( title: new Text("Admin Page") , automaticallyImplyLeading: true, backgroundColor: c2 ),
+      backgroundColor: c,
+
+      body:  Column(
+          mainAxisAlignment: MainAxisAlignment.center ,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            new Container(
+              child: Center( child:
+              AdminImageWidget(),
+              ),),
+    new Container(
+    //padding: EdgeInsets.only(top: 10),
+    margin: EdgeInsets.all(20.0),
+
+
+    child: Text(
+    "We are currently working on Admin module.\n"
+        "Please try again later",
+    //   textDirection: TextDirection.ltr,
+    textAlign: TextAlign.center,
+    style: TextStyle(
+
+    fontSize: 15.0,
+    color: c2,
+    decoration: TextDecoration.none,
+    fontFamily: "Oxygen",
+    fontWeight: FontWeight.w600,
+    ),
+    ),
+
+    ),
+
+            new Container(
+              //padding: EdgeInsets.only(top: 10),
+           //   margin: EdgeInsets.all(30.0),
+              child: ButtonTheme(
+              minWidth: 150.0,
+
+              child: RaisedButton(
+                  child: Text("Go Back"),
+                  onPressed: (){
+                    Navigator.of(context).pushNamed("/");},
+                  color: c2,
+                  textColor: c,
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0))
+              ),
+              ),
+            ),
+            ],
+
+
+
+
+
+
+
+
+
+   //     alignment: Alignment.center,
+     //   padding: EdgeInsets.only(bottom: 60.0),
+
+
+      ),
+
+    );
+  }
+}
 
 class SecondPage extends StatelessWidget {
   @override
