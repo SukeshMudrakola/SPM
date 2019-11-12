@@ -334,7 +334,7 @@ class ValidationMixin {
 
   String validatePassword(String value) {
     if (value.length < 4) {
-      return 'Password must be more than 4 characters';
+      return 'Password must be more than 4 characterss';
     }
     return null;
   }
