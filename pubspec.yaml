@@ -18,6 +18,8 @@ environment:
 
 dependencies:
   gender_selection: "^0.0.8"
+  animated_splash: "^1.0.0"
+
   flutter:
     sdk: flutter
 

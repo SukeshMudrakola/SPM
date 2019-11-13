@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'Login_Screen.dart';
 
 
+
+
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -194,7 +196,7 @@ class AdminPage extends StatelessWidget {
                   child: Text("Go Back"),
                   onPressed: (){
                    // Navigator.of(context).pushNamed("/");
-                    Navigator.pop(context);
+                   Navigator.of(context).pushNamed("/HomePage");
                     },
                   color: c2,
                   textColor: c,
