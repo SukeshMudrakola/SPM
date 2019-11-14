@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Login_Screen.dart';
 
-
-
-
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.only(top: 40.0),
               //  color: Colors.lightBlueAccent,
               child: Column(
-                     mainAxisAlignment: MainAxisAlignment.center ,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     new Container(
@@ -37,7 +34,6 @@ class Home extends StatelessWidget {
                       padding: EdgeInsets.only(top: 10),
                       margin: EdgeInsets.all(30.0),
                       child: Center(
-
                         child: Text(
                           "We aim to collect data on various intercultural situations "
                           "for  understanding biased or discriminatory behaviour of people. \n \n"
@@ -47,7 +43,6 @@ class Home extends StatelessWidget {
                           //   textDirection: TextDirection.ltr,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-
                             fontSize: 15.0,
                             color: c2,
                             decoration: TextDecoration.none,
@@ -57,19 +52,18 @@ class Home extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     new Container(
                       child: ButtonTheme(
                         minWidth: 250.0,
                         child: RaisedButton(
                             child: Text("Begin Questionnaire"),
-                            onPressed: (){
-                              Navigator.of(context).pushNamed("/SecondPage");},
+                            onPressed: () {
+                              Navigator.of(context).pushNamed("/SecondPage");
+                            },
                             color: c2,
                             textColor: c,
                             shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(30.0))
-                                ),
+                                borderRadius: new BorderRadius.circular(30.0))),
                       ),
                     ),
                     new Container(
@@ -91,10 +85,9 @@ class Home extends StatelessWidget {
                         height: 30,
                         child: RaisedButton(
                             child: Text("Admin Login"),
-                            onPressed: (){
-                            Navigator.of(context).pushNamed("/AdminPage");},
-
-
+                            onPressed: () {
+                              Navigator.of(context).pushNamed("/AdminPage");
+                            },
                             color: c2,
                             textColor: c,
                             shape: new RoundedRectangleBorder(
@@ -110,8 +103,6 @@ class Home extends StatelessWidget {
 }
 
 //_beginQues() {
-
-
 
 _adminLogin() {}
 
@@ -144,6 +135,21 @@ class AdminImageWidget extends StatelessWidget {
   }
 }
 
+class ThankyouImageWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    AssetImage logoAsset = AssetImage('assets/heart.png');
+    Image image = Image(
+      image: logoAsset,
+      width: 250,
+      alignment: Alignment.center,
+    );
+
+    return Container(child: image);
+  }
+}
+
 class AdminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -153,74 +159,60 @@ class AdminPage extends StatelessWidget {
     // TODO: implement build
 
     return new Scaffold(
-      appBar: new AppBar( title: new Text("Admin Page") , automaticallyImplyLeading: true, backgroundColor: c2 ),
+      appBar: new AppBar(
+          title: new Text("Admin Page"),
+          automaticallyImplyLeading: true,
+          backgroundColor: c2),
       backgroundColor: c,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          new Container(
+            child: Center(
+              child: AdminImageWidget(),
+            ),
+          ),
+          new Container(
+            //padding: EdgeInsets.only(top: 10),
+            margin: EdgeInsets.all(20.0),
 
-      body:  Column(
-          mainAxisAlignment: MainAxisAlignment.center ,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            new Container(
-              child: Center( child:
-              AdminImageWidget(),
-              ),),
-    new Container(
-    //padding: EdgeInsets.only(top: 10),
-    margin: EdgeInsets.all(20.0),
-
-
-    child: Text(
-    "We are currently working on Admin module.\n"
-        "Please try again later",
-    //   textDirection: TextDirection.ltr,
-    textAlign: TextAlign.center,
-    style: TextStyle(
-
-    fontSize: 15.0,
-    color: c2,
-    decoration: TextDecoration.none,
-    fontFamily: "Oxygen",
-    fontWeight: FontWeight.w600,
-    ),
-    ),
-
-    ),
-
-            new Container(
-              //padding: EdgeInsets.only(top: 10),
-           //   margin: EdgeInsets.all(30.0),
-              child: ButtonTheme(
+            child: Text(
+              "We are currently working on Admin module.\n"
+              "Please try again later",
+              //   textDirection: TextDirection.ltr,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 15.0,
+                color: c2,
+                decoration: TextDecoration.none,
+                fontFamily: "Oxygen",
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          new Container(
+            //padding: EdgeInsets.only(top: 10),
+            //   margin: EdgeInsets.all(30.0),
+            child: ButtonTheme(
               minWidth: 150.0,
-
               child: RaisedButton(
                   child: Text("Go Back"),
-                  onPressed: (){
-                   // Navigator.of(context).pushNamed("/");
-                   Navigator.of(context).pushNamed("/HomePage");
-                    },
+                  onPressed: () {
+                    // Navigator.of(context).pushNamed("/");
+                    Navigator.of(context).pushNamed("/HomePage");
+                  },
                   color: c2,
                   textColor: c,
                   shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(30.0))
-              ),
-              ),
+                      borderRadius: new BorderRadius.circular(30.0))),
             ),
-            ],
+          ),
+        ],
 
-
-
-
-
-
-
-
-
-   //     alignment: Alignment.center,
-     //   padding: EdgeInsets.only(bottom: 60.0),
-
-
+        //     alignment: Alignment.center,
+        //   padding: EdgeInsets.only(bottom: 60.0),
       ),
-
     );
   }
 }
@@ -233,15 +225,97 @@ class SecondPage extends StatelessWidget {
 
     // TODO: implement build
 
-        return new Scaffold(
-          appBar: new AppBar( title: new Text("Second Page") , automaticallyImplyLeading: true, backgroundColor: c2 ),
-            backgroundColor: c,
+    return new Scaffold(
+      appBar: new AppBar(
+          title: new Text("Second Page"),
+          automaticallyImplyLeading: true,
+          backgroundColor: c2),
+      backgroundColor: c,
+      body: SingleChildScrollView(
+        child: LoginScreen(),
+      ),
+    );
+  }
+}
 
-            body: SingleChildScrollView(
+class ThankyouPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Color c = Color.fromRGBO(251, 234, 235, 1);
+    Color c2 = Color.fromRGBO(47, 60, 126, 1);
 
-              child:  LoginScreen(),
-            ),
+    // TODO: implement build
 
-        );
+    return new Scaffold(
+      body: Container(
+        color: c,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                child: Center(
+                  child: ThankyouImageWidget(),
+                ),
+    ),
+
+                Container(
+                  child: Text(
+                    "Thank you",
+
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      color: c2,
+                      decoration: TextDecoration.none,
+                      fontFamily: "Oxygen",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+
+
+                ),
+              Container(
+                padding: EdgeInsets.only(top:30),
+                child: Text(
+                  "You are helping for a cause \n"
+                      "A cause to help yourself and others\n"
+                      "to get over the intercultural situations and\n"
+                      "differences in the society"
+                  ,
+
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    color: c2,
+                    decoration: TextDecoration.none,
+                    fontFamily: "Oxygen",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+
+
+              ),
+
+              Container(
+                padding: EdgeInsets.only(top: 30),
+              ),
+
+
+             ButtonTheme(
+               minWidth: 300,
+    child: RaisedButton(
+                color: c2,
+                textColor: c,
+                child: new Text(
+                  "Home",
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/HomePage");
+                },
+              ),),
+            ]),
+      ),
+    );
   }
 }

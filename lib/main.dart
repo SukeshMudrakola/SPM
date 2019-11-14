@@ -18,6 +18,7 @@ void main() {
       "/SecondPage": (BuildContext context) => new SecondPage(),
       "/AdminPage": (BuildContext context) => new AdminPage(),
       "/HomePage": (BuildContext context) => new Home(),
+      "/ThankyouPage": (BuildContext context) => new ThankyouPage(),
   //    "/": (BuildContext context) => new MainPage(),
 
     }

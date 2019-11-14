@@ -1,5 +1,6 @@
+
 import 'package:flutter/material.dart';
-import 'package:gender_selection/gender_selection.dart';
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -9,17 +10,19 @@ class LoginScreen extends StatefulWidget {
 }
 
 
+
+
 class LoginScreenState extends State<LoginScreen> with ValidationMixin {
   final formKey = GlobalKey<FormState>();
 
 
   String email = '';
+ // String cc='';
   String password = '';
   String name = '';
- // String gender = '';
   int age;
-  String homeCountry = '';
-  String citizenCountry = '';
+  String homeCountry;
+  String citizenCountry;
   String nativeLang = '';
   String ethnicity = '';
   String religion = '';
@@ -30,9 +33,17 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
   String employerDomain = '';
   String role = '';
 
+  String _buildDialogItem='';
+
   String gender;
+  String phase2='';
+  String phase3='';
 
   Widget build(BuildContext context) {
+
+
+
+
     return Container(
       margin: EdgeInsets.all(20.0),
       child: Form(
@@ -42,10 +53,7 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
             NameField(),
             Container(margin: EdgeInsets.only(top: 15.0)),
 
-            //     emailField(),
-            //      passwordField(),
 
-          // check(),
             testGender(),
 
             ageField(),
@@ -60,6 +68,9 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
             employerField(),
             employerDomainField(),
             roleField(),
+            phase2Field(),
+            phase3Field(),
+
 
             Container(margin: EdgeInsets.only(top: 25.0)),
 
@@ -77,6 +88,49 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
       ),
     );
   }
+
+
+Widget phase2Field(){
+  return TextFormField(
+    keyboardType: TextInputType.multiline,
+    maxLines: 6,
+    decoration: InputDecoration(
+      labelText: 'Describe an intercultural interaction',
+         hintText: 'Limit yourself to items that could give a clean picture and understanding of the situation to a person who is not familiar with the context of the '
+             'situation. Make sure to include who, when, where, why, and how to make it easy to understand',
+    ),
+    validator: (val) =>
+    val.isNotEmpty ? null : "Please describe the intercultural interaction that you experianced",
+    onSaved: (String value) {
+
+      phase2 = value;
+    },
+  );
+
+}
+
+  Widget phase3Field(){
+    return TextFormField(
+      keyboardType: TextInputType.multiline,
+      maxLines: 6,
+      decoration: InputDecoration(
+        labelText: 'Identify a concern',
+        hintText: 'What concerns you about this interaction?'
+            'What questions does it raise? or what would you like to understand in this situation?',
+      ),
+
+      validator: (val) =>
+      val.isNotEmpty ? null : "Please tell us your concerns about this interaction",
+      onSaved: (String value) {
+        phase3 = value;
+      },
+    );
+
+  }
+
+
+
+
 
   Widget testGender(){
     Color c = Color.fromRGBO(251, 234, 235, 1);
@@ -96,7 +150,7 @@ return Row (
 new Container( child:
     Center(
         child: DropdownButton<String>(
-          hint: new Text("I am",),
+          hint: new Text("I am                    ",),
           value: gender,
       //    icon: Icon(Icons.arrow_downward),
           iconSize: 24,
@@ -104,11 +158,12 @@ new Container( child:
           style: TextStyle(color: c2),
           underline: Container(
             height: 2,
-            color: Colors.deepPurpleAccent,
+            color: c2,
           ),
           onChanged: (String newValue) {
             setState(() {
               gender = newValue;
+
             });
           },
           items: <String>['Male', 'Female', 'Prefer not to say']
@@ -131,6 +186,8 @@ new Container( child:
   }
 
   Widget ageField() {
+    Color c = Color.fromRGBO(251, 234, 235, 1);
+    Color c2 = Color.fromRGBO(47, 60, 126, 1);
     return Row (
 
       mainAxisAlignment: MainAxisAlignment.spaceBetween ,
@@ -146,7 +203,7 @@ new Container( child:
         new Container( child:
         Center(
             child: DropdownButton<int>(
-              hint: new Text("My age is             ",),
+              hint: new Text("My age is                   ",),
               value: age,
               //    icon: Icon(Icons.arrow_downward),
               iconSize: 24,
@@ -154,14 +211,15 @@ new Container( child:
               style: TextStyle(color: Colors.deepPurple),
               underline: Container(
                 height: 2,
-                color: Colors.deepPurpleAccent,
+                color: c2,
               ),
               onChanged: (int newValue) {
                 setState(() {
                   age = newValue;
+
                 });
               },
-              items: <int>[1,2,3,4,5,6,7,8,9,9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+              items: <int>[15, 16, 17, 18, 19,
                 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
                 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
                 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
@@ -189,83 +247,141 @@ new Container( child:
 
   }
 
-  /* radiobuttons
-  Widget testGender(){
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children :<Widget>[
-
-      Container(
-       // alignment: Alignment.centerLeft,
-        child: Text(
-          "Gender"
-        ),
-      ),
-      Container(
-         margin: EdgeInsets.only(right:50)
-      ),
-      Container(
-      //  alignment: Alignment.centerRight,
-    child: DropdownButton<String>(
-      value: dropdownValue,
-     // icon: Icon(Icons.arrow_downward),
-      iconSize: 24,
-      elevation: 16,
-      style: TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String newValue) {
-        setState(() {
-          dropdownValue = newValue;
-        });
-      },
-      items: <String>['Male','Female','Prefer not to say']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    ),),
-
- ], );}
-
-
-
-*/
 
 
 
 
 
   Widget homeCountryField() {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-        labelText: 'My home country is',
-        //hintText: '',
-      ),
-      onSaved: (String value) {
-        homeCountry = value;
-      },
-    );
+
+
+      Color c = Color.fromRGBO(251, 234, 235, 1);
+      Color c2 = Color.fromRGBO(47, 60, 126, 1);
+      return Row (
+
+        mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+        //crossAxisAlignment: CrossAxisAlignment.center,
+
+        children: <Widget>[
+
+          new Container(child:
+
+          new Text("Home country")
+
+          ),
+          new Container( child:
+          Center(
+              child: DropdownButton<String>(
+                hint: new Text("I am from",),
+                value: homeCountry,
+                //    icon: Icon(Icons.arrow_downward),
+                iconSize: 24,
+                elevation: 16,
+                style: TextStyle(color: c2),
+                underline: Container(
+                  height: 2,
+                  color: c2,
+                ),
+                onChanged: (String newValue) {
+                  setState(() {
+                    homeCountry = newValue;
+                    print("here");
+                    if(homeCountry==null){
+                      print("inside");
+                      homeCountry="Not stated";
+                    }
+                  });
+                },
+
+
+
+                items: <String>['Afghanistan','Albania','Algeria','Andorra','Angola','Antigua&Deps','Argentina','Armenia','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bhutan','Bolivia','Bosnia','Herzegovina','Botswana','Brazil','Brunei','Bulgaria','Burkina','Burundi','Cambodia','Cameroon','Canada','CapeVerde','Central Africa','Chad','Chile','China','Colombia','Comoros','Congo','Congo','CostaRica','Croatia','Cuba','Cyprus','Czech Republic','Denmark','Djibouti','Dominica','Ecuador','Egypt','El Salvador','Guinea','Eritrea','Estonia','Ethiopia','Fiji','Finland','France','Gabon','Gambia','Georgia','Germany','Ghana','Greece','Grenada','Guatemala','Guinea','Guyana','Haiti','Honduras','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel','Italy','Ivory Coast','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kiribati','KoreaNorth','KoreaSouth','Kosovo','Kuwait','Kyrgyzstan','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Lithuania','Luxembourg','Macedonia','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Marshall Islands','Mauritania','Mauritius','Mexico','Micronesia','Moldova','Monaco','Mongolia','Montenegro','Morocco','Mozambique','Myanmar','Burma','Namibia','Nauru','Nepal','Netherlands','New Zealand','Nicaragua','Niger','Nigeria','Norway','Oman','Pakistan','Palau','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Qatar','Romania','Russian','Rwanda','St Lucia','Samoa','SanMarino','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Swaziland','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Togo','Tonga','Trinidad&Tobago','Tunisia','Turkey','Turkmenistan','Tuvalu','Uganda','Ukraine','UAE','UK','US','Uruguay','Uzbekistan','Vanuatu','VaticanCity','Venezuela','Vietnam','Yemen','Zambia','Zimbabwe']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              )
+
+
+
+          ),
+
+
+          ),
+
+
+        ],);
+
+
+
+
+
   }
 
+
   Widget citizenCountryField() {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-        labelText: 'I am currently a citizen of',
-        //  hintText: 'XYZ ABC',
-      ),
-      onSaved: (String value) {
-        citizenCountry = value;
-      },
-    );
+
+
+    Color c = Color.fromRGBO(251, 234, 235, 1);
+    Color c2 = Color.fromRGBO(47, 60, 126, 1);
+    return Row (
+
+      mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+      //crossAxisAlignment: CrossAxisAlignment.center,
+
+      children: <Widget>[
+
+        new Container(child:
+
+        new Text("Citizen of country")
+
+        ),
+        new Container( child:
+        Center(
+            child: DropdownButton<String>(
+              hint: new Text("I am a citizen of",),
+              value: citizenCountry,
+              //    icon: Icon(Icons.arrow_downward),
+              iconSize: 24,
+              elevation: 16,
+              style: TextStyle(color: c2),
+              underline: Container(
+                height: 2,
+                color: c2,
+              ),
+              onChanged: (String newValue) {
+                setState(() {
+                  citizenCountry = newValue;
+
+                  }
+
+
+                );
+              },
+              items: <String>['Afghanistan','Albania','Algeria','Andorra','Angola','Antigua&Deps','Argentina','Armenia','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bhutan','Bolivia','Bosnia','Herzegovina','Botswana','Brazil','Brunei','Bulgaria','Burkina','Burundi','Cambodia','Cameroon','Canada','CapeVerde','Central Africa','Chad','Chile','China','Colombia','Comoros','Congo','Congo','CostaRica','Croatia','Cuba','Cyprus','Czech Republic','Denmark','Djibouti','Dominica','Ecuador','Egypt','El Salvador','Guinea','Eritrea','Estonia','Ethiopia','Fiji','Finland','France','Gabon','Gambia','Georgia','Germany','Ghana','Greece','Grenada','Guatemala','Guinea','Guyana','Haiti','Honduras','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel','Italy','Ivory Coast','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kiribati','KoreaNorth','KoreaSouth','Kosovo','Kuwait','Kyrgyzstan','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Lithuania','Luxembourg','Macedonia','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Marshall Islands','Mauritania','Mauritius','Mexico','Micronesia','Moldova','Monaco','Mongolia','Montenegro','Morocco','Mozambique','Myanmar','Burma','Namibia','Nauru','Nepal','Netherlands','New Zealand','Nicaragua','Niger','Nigeria','Norway','Oman','Pakistan','Palau','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Qatar','Romania','Russian','Rwanda','St Lucia','Samoa','SanMarino','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Swaziland','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Togo','Tonga','Trinidad&Tobago','Tunisia','Turkey','Turkmenistan','Tuvalu','Uganda','Ukraine','UAE','UK','US','Uruguay','Uzbekistan','Vanuatu','VaticanCity','Venezuela','Vietnam','Yemen','Zambia','Zimbabwe']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            )
+        ),
+
+
+        ),
+
+
+      ],);
+
+
+
+
+
   }
+
 
   Widget nativeLangField() {
     return TextFormField(
@@ -323,6 +439,7 @@ new Container( child:
 
   Widget NameField() {
     return TextFormField(
+
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         labelText: 'First Name',
@@ -432,6 +549,59 @@ new Container( child:
 
   Widget submitButton() {
 
+
+    if(homeCountry==null){
+      print("inside");
+      homeCountry="Not stated";
+    }
+
+    if(citizenCountry==null){
+      citizenCountry="Not stated";
+    }
+
+    if(nativeLang==null){
+      nativeLang="Not stated";
+    }
+
+    if(ethnicity==null){
+      ethnicity="Not stated";
+    }
+
+    if(religion==null){
+      religion="Not stated";
+    }
+
+    if(socioEconomics==null){
+      socioEconomics="Not stated";
+    }
+
+    if(profession==null){
+      profession="Not stated";
+    }
+
+    if(employerDomain==null){
+      employerDomain="Not stated";
+    }
+
+    if(employer==null){
+      employer="Not stated";
+    }
+
+    if(role==null){
+      role="Not stated";
+    }
+    if(education==null){
+      education="Not stated";
+    }
+    if(age==null){
+      age=0;
+    }
+
+    if(gender==null){
+      gender="Not Stated";
+    }
+
+
     Color c = Color.fromRGBO(251, 234, 235, 1);
     Color c2 = Color.fromRGBO(47, 60, 126, 1);
     return RaisedButton(
@@ -441,6 +611,96 @@ new Container( child:
       onPressed: () {
         //*: Need to get a reference of the Form Widget with Global key to perform form validation
         if (formKey.currentState.validate()) {
+
+          showDialog(
+
+            context: context,
+            builder: (BuildContext context) {
+              // return object of type Dialog
+              return SimpleDialog(
+                contentPadding: EdgeInsets.all(40),
+                backgroundColor: c2,
+
+                title: new Text("Confirmation",  textAlign: TextAlign.center,
+                  style: TextStyle(
+
+                    fontSize: 25.0,
+                    color: c,
+                    decoration: TextDecoration.none,
+                    fontFamily: "Oxygen",
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+               children:<Widget>[
+
+                  new Text(
+                    "First name:"+name+"\n"
+                "Gender:"+gender+"\n"
+                   "Age:"+age.toString()+"\n"
+                    "Home Country:"+homeCountry+"\n"
+                    "Citizenship Country:"+citizenCountry+"\n"
+                    "Native Language:"+nativeLang+"\n"
+                   "Ethnicity:"+ethnicity+"\n"
+                    "Religion:"+religion+"\n"
+                    "Socio-Economic situation:"+socioEconomics+"\n"
+                    "Education:"+education+"\n"
+                    "Professional field:"+profession+"\n"
+                    "Employer type:"+employer+"\n"
+                   "Field of organisation:"+employerDomain+"\n"
+                    "Role:"+role+"\n"
+                    "Intercultural interaction:"+phase2+"\n"
+                    "Concerns Identified:"+phase3+"\n",
+
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+
+                      fontSize: 15.0,
+                      color: c,
+                      decoration: TextDecoration.none,
+                      fontFamily: "Oxygen",
+                      fontWeight: FontWeight.w400,
+                    ),
+
+
+                ),
+
+
+                new ButtonTheme(
+                  minWidth: 100.0,
+                  height: 30,// usually buttons at the bottom of the dialog
+                  child: RaisedButton(
+                    color: c,
+
+                    child: new Text("Confirm"),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/ThankyouPage");
+                    },
+                  ),
+              ),
+              //   new Container(padding: EdgeInsets.only(top: 30),),
+
+              new ButtonTheme(
+                minWidth: 100.0,
+                height: 30,
+              child: RaisedButton(
+                color: c,
+
+                   child: new Text("Cancel"),
+                   onPressed: () {
+                     Navigator.of(context).pop();
+                   },
+                 ),
+              ),
+
+                ],
+              );
+            },
+          );
+
+
+
+
+
           formKey.currentState.save();
           print(gender);
           print(age);
@@ -463,6 +723,7 @@ new Container( child:
       // color: Colors.blue,
       child: Text('Reset'),
       onPressed: () {
+
 
         formKey.currentState.reset();
         //*: Need to get a reference of the Form Widget with Global key to perform form validation
@@ -493,10 +754,7 @@ class ValidationMixin {
     return null;
   }
 
-  BoxDecoration myBoxDecoration() {
-    return BoxDecoration(
-      border: Border.all(),
 
-    );
-  }
+
+
 }
