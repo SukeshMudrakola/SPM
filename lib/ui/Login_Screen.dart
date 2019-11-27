@@ -93,12 +93,15 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
 Widget phase2Field(){
   return TextFormField(
     keyboardType: TextInputType.multiline,
-    maxLines: 6,
+    maxLines: 7,
     decoration: InputDecoration(
       labelText: 'Describe an intercultural interaction',
          hintText: 'Limit yourself to items that could give a clean picture and understanding of the situation to a person who is not familiar with the context of the '
-             'situation. Make sure to include who, when, where, why, and how to make it easy to understand',
+             'situation. Make sure to include who, when, where, why, and how to make it easy to understand.\n'
+             'example: As a..',
     ),
+
+
     validator: (val) =>
     val.isNotEmpty ? null : "Please describe the intercultural interaction that you experianced",
     onSaved: (String value) {
@@ -150,7 +153,7 @@ return Row (
 new Container( child:
     Center(
         child: DropdownButton<String>(
-          hint: new Text("I am                    ",),
+          hint: new Text("I am                       ",),
           value: gender,
       //    icon: Icon(Icons.arrow_downward),
           iconSize: 24,
@@ -188,7 +191,8 @@ new Container( child:
   Widget ageField() {
     Color c = Color.fromRGBO(251, 234, 235, 1);
     Color c2 = Color.fromRGBO(47, 60, 126, 1);
-    return Row (
+
+        return Row (
 
       mainAxisAlignment: MainAxisAlignment.spaceBetween ,
       //crossAxisAlignment: CrossAxisAlignment.center,
@@ -205,10 +209,10 @@ new Container( child:
             child: DropdownButton<int>(
               hint: new Text("My age is                   ",),
               value: age,
-              //    icon: Icon(Icons.arrow_downward),
-              iconSize: 24,
+               //   icon: Icon(Icons.arrow_downward),
+             iconSize: 24,
               elevation: 16,
-              style: TextStyle(color: Colors.deepPurple),
+             style: TextStyle(color: Colors.deepPurple),
               underline: Container(
                 height: 2,
                 color: c2,
@@ -219,6 +223,9 @@ new Container( child:
 
                 });
               },
+
+              //validator: (val) => val==0 ? 'Name is required' : null,
+
               items: <int>[15, 16, 17, 18, 19,
                 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
                 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
@@ -272,7 +279,7 @@ new Container( child:
           new Container( child:
           Center(
               child: DropdownButton<String>(
-                hint: new Text("I am from",),
+                hint: new Text("I am from"),
                 value: homeCountry,
                 //    icon: Icon(Icons.arrow_downward),
                 iconSize: 24,
@@ -281,16 +288,23 @@ new Container( child:
                 underline: Container(
                   height: 2,
                   color: c2,
+
                 ),
+
+
                 onChanged: (String newValue) {
+
                   setState(() {
                     homeCountry = newValue;
                     print("here");
                     if(homeCountry==null){
-                      print("inside");
+                     // print("inside");
                       homeCountry="Not stated";
                     }
-                  });
+                   // validator: (val) => val.isEmpty ? 'Name is required' : null,
+                  }
+
+                  );
                 },
 
 
@@ -300,8 +314,10 @@ new Container( child:
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
+
                   );
                 }).toList(),
+
               )
 
 
@@ -319,6 +335,7 @@ new Container( child:
 
 
   }
+
 
 
   Widget citizenCountryField() {
@@ -341,6 +358,7 @@ new Container( child:
         new Container( child:
         Center(
             child: DropdownButton<String>(
+
               hint: new Text("I am a citizen of",),
               value: citizenCountry,
               //    icon: Icon(Icons.arrow_downward),
@@ -365,9 +383,12 @@ new Container( child:
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
+
                 );
               }).toList(),
             )
+
+
         ),
 
 
@@ -551,7 +572,7 @@ new Container( child:
 
 
     if(homeCountry==null){
-      print("inside");
+  //    validator: (val) => val.isEmpty ? 'Name is required' : null,
       homeCountry="Not stated";
     }
 
@@ -559,45 +580,45 @@ new Container( child:
       citizenCountry="Not stated";
     }
 
-    if(nativeLang==null){
+    if(nativeLang==null || nativeLang.isEmpty || nativeLang==''){
       nativeLang="Not stated";
     }
 
-    if(ethnicity==null){
+    if(ethnicity==null || ethnicity.isEmpty || ethnicity==''){
       ethnicity="Not stated";
     }
 
-    if(religion==null){
+    if(religion==null || religion.isEmpty || religion==''){
       religion="Not stated";
     }
 
-    if(socioEconomics==null){
+    if(socioEconomics==null || socioEconomics.isEmpty || socioEconomics==''){
       socioEconomics="Not stated";
     }
 
-    if(profession==null){
+    if(profession==null || profession.isEmpty || profession==''){
       profession="Not stated";
     }
 
-    if(employerDomain==null){
+    if(employerDomain==null || employerDomain.isEmpty || employerDomain==''){
       employerDomain="Not stated";
     }
 
-    if(employer==null){
+    if(employer==null || employer.isEmpty || employer==''){
       employer="Not stated";
     }
 
-    if(role==null){
+    if(role==null || role.isEmpty || role==''){
       role="Not stated";
     }
-    if(education==null){
+    if(education==null || education.isEmpty || education==''){
       education="Not stated";
     }
     if(age==null){
       age=0;
     }
 
-    if(gender==null){
+    if(gender==null || gender.isEmpty || gender==''){
       gender="Not Stated";
     }
 
@@ -758,3 +779,5 @@ class ValidationMixin {
 
 
 }
+
+

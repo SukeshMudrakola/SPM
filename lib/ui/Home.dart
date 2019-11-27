@@ -179,7 +179,7 @@ class AdminPage extends StatelessWidget {
 
             child: Text(
               "We are currently working on Admin module.\n"
-              "Please try again later",
+              "Please expect this in the next release",
               //   textDirection: TextDirection.ltr,
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -227,7 +227,7 @@ class SecondPage extends StatelessWidget {
 
     return new Scaffold(
       appBar: new AppBar(
-          title: new Text("Second Page"),
+          title: new Text("Questionnare"),
           automaticallyImplyLeading: true,
           backgroundColor: c2),
       backgroundColor: c,
